@@ -14,6 +14,10 @@ Panel animado en vivo dentro de Claude Code (app de escritorio, pestaña Code) q
 En la terminal:
 
 ```
+# Un solo comando (Claude Code reciente):
+claude plugin install orquesta --marketplace TU_USUARIO/orquesta --scope user
+
+# O en dos pasos:
 claude plugin marketplace add TU_USUARIO/orquesta
 claude plugin install orquesta@orquesta --scope user
 ```
