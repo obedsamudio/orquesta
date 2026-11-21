@@ -1,0 +1,17 @@
+{
+  "name": "orquesta",
+  "owner": {
+    "name": "osdevstudio"
+  },
+  "plugins": [
+    {
+      "name": "orquesta",
+      "source": "./orquesta",
+      "description": "Panel animado de agentes y subagentes"
+    }
+  ],
+  "metadata": {
+    "description": "Panel animado en vivo del agente principal y sus subagentes en Claude Code"
+  },
+  "description": "Panel animado en vivo del agente principal y sus subagentes en Claude Code"
+}

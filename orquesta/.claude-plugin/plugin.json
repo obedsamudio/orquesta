@@ -1,0 +1,7 @@
+{
+  "name": "orquesta",
+  "version": "1.0.0",
+  "description": "Live animated panel of the main agent and its subagents: models, tasks and tool actions.",
+  "author": { "name": "osdevstudio" },
+  "types": "./types/index.d.ts"
+}
