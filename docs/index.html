@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>orquesta · panel de subagentes para Claude Code</title>
+<meta name="description" content="orquesta es un plugin gratis de Claude Code: un panel animado en vivo que muestra al agente principal y a cada subagente trabajando en equipo.">
+<meta property="og:title" content="orquesta · panel de subagentes para Claude Code">
+<meta property="og:description" content="Así se ve Claude cuando trabaja en equipo. Plugin gratis y open source para Claude Code.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#0b0f14">
+<style>
+:root{--bg:#0b0f14;--card:#141a22;--line:#232c37;--tx:#e8edf2;--mut:#9aa7b4;--o:#e07a52;--b:#5b9be6;--g:#7fb069;--r:#e5534b}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg) radial-gradient(900px 500px at 50% -120px,rgba(224,122,82,.16),transparent 70%),radial-gradient(600px 400px at 100% 30%,rgba(91,155,230,.08),transparent 70%) no-repeat;color:var(--tx);font:16px/1.55 Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;overflow-x:hidden}
+.w{max-width:720px;margin:0 auto;padding:0 16px}
+section{padding:36px 0 8px}
+h1{font-size:clamp(30px,8vw,48px);line-height:1.1;margin:0 0 14px;letter-spacing:-.02em}
+h2{font-size:24px;margin:0 0 14px}
+p{margin:0 0 14px;color:var(--mut)}
+.hero{padding-top:44px;text-align:center}
+.hero p{font-size:18px;max-width:34em;margin-inline:auto}
+.btn{display:inline-block;background:var(--o);color:#1a0d07;font-weight:700;text-decoration:none;padding:14px 24px;border-radius:12px;margin:6px 0 28px}
+.btn:focus-visible,button:focus-visible,a:focus-visible{outline:3px solid var(--b);outline-offset:2px}
+.panel{text-align:left;background:#0f141b;border:1px solid var(--line);border-radius:16px;padding:12px;max-width:420px;margin:0 auto}
+.c{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--c,var(--o));border-radius:10px;padding:9px 12px;font-size:13px;color:var(--mut);display:flex;justify-content:space-between;gap:8px;margin-top:8px}
+.c b{color:var(--tx);display:block;font-size:14px}
+.c i{font-style:normal;color:var(--c);font-weight:600;white-space:nowrap}
+.c.o{--c:var(--o);margin:0}.c.b{--c:var(--b)}.c.g{--c:var(--g)}.c.r{--c:var(--r);background:#2a1618}
+.sub{margin-left:18px}
+.c.live{animation:p 2s ease-in-out infinite}
+.c.live:nth-of-type(3){animation-delay:.6s}
+@keyframes p{50%{box-shadow:0 0 0 3px rgba(91,155,230,.18)}}
+@media (prefers-reduced-motion:reduce){.c.live{animation:none}}
+ul.f{list-style:none;padding:0;margin:0;display:grid;gap:10px}
+ul.f li{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+.dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:8px}
+.step{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;margin-bottom:12px}
+.step h3{margin:0 0 10px;font-size:16px}
+.code{display:flex;gap:8px;align-items:stretch}
+pre{flex:1;min-width:0;margin:0;background:#0b0f14;border:1px solid var(--line);border-radius:10px;padding:10px 12px;overflow-x:auto;font:13px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;color:#d6e2ee;white-space:pre}
+button{background:#1f2832;color:var(--tx);border:1px solid #33404d;border-radius:10px;padding:0 14px;min-height:44px;font:600 14px inherit;font-family:inherit;cursor:pointer}
+button:hover{border-color:var(--o)}
+.safe{border-color:rgba(127,176,105,.5)}
+footer{padding:36px 0 40px;text-align:center;font-size:14px;color:var(--mut)}
+a{color:var(--b)}
+code{background:#0b0f14;border:1px solid var(--line);border-radius:6px;padding:1px 6px;font-size:.9em;color:#d6e2ee}
+</style>
+</head>
+<body>
+<main class="w">
+<section class="hero">
+  <h1>Así se ve Claude cuando trabaja en equipo</h1>
+  <p>orquesta es un plugin gratis de Claude Code que muestra en vivo a cada subagente trabajando.</p>
+  <a class="btn" href="https://github.com/obedsamudio/orquesta">Ver en GitHub</a>
+  <div class="panel" aria-hidden="true">
+    <div class="c o live"><span><b>Agente principal</b>Coordinando el equipo</span><i>Opus</i></div>
+    <div class="c b sub live"><span><b>Investigar fuentes</b>Buscando en la web</span><i>Sonnet</i></div>
+    <div class="c g sub live"><span><b>Resumir hallazgos</b>Leyendo archivos</span><i>Haiku</i></div>
+    <div class="c b sub live"><span><b>Comparar datos</b>Analizando</span><i>Sonnet</i></div>
+    <div class="c r sub"><span><b>Revisar enlace</b>Falló: tiempo agotado</span><i>Error</i></div>
+  </div>
+</section>
+
+<section>
+  <h2>Qué muestra</h2>
+  <ul class="f">
+    <li><span class="dot" style="background:var(--o)"></span>Agente principal (Opus) y cada subagente (Sonnet, Haiku)</li>
+    <li>Modelo, tarea, acción actual, temporizador y tokens de cada uno</li>
+    <li>Árbol cuando un subagente lanza otros</li>
+    <li><span class="dot" style="background:var(--r)"></span>Tarjeta roja si algo falla</li>
+    <li>Sonidos al empezar y al terminar</li>
+    <li>Resumen final del trabajo</li>
+    <li><span class="dot" style="background:var(--g)"></span>Verlo no gasta tokens: solo dibuja eventos que Claude ya produce</li>
+  </ul>
+  <p style="margin-top:14px">Funciona en la app de escritorio de Claude, pestaña Code (Claude Code).</p>
+</section>
+
+<section>
+  <h2>Instálalo en 1 minuto</h2>
+  <div class="step"><h3>1) Terminal</h3>
+    <div class="code"><pre id="c1">claude plugin install orquesta --marketplace obedsamudio/orquesta --scope user</pre><button type="button" data-t="c1" aria-label="Copiar comando de terminal">Copiar</button></div></div>
+  <div class="step"><h3>2) Chat de Claude Code</h3>
+    <div class="code"><pre id="c2">/plugin marketplace add obedsamudio/orquesta
+/plugin install orquesta@orquesta
+/reload-plugins</pre><button type="button" data-t="c2" aria-label="Copiar comandos del chat">Copiar</button></div></div>
+  <div class="step"><h3>3) Pídeselo a Claude</h3>
+    <div class="code"><pre id="c3">Instala el plugin de https://github.com/obedsamudio/orquesta y ábrelo</pre><button type="button" data-t="c3" aria-label="Copiar petición para Claude">Copiar</button></div></div>
+  <p>Ábrelo con <code>/orquesta</code></p>
+  <p>Pruébalo: <code>investiga este tema usando 3 subagentes</code></p>
+</section>
+
+<section>
+  <h2>Es seguro</h2>
+  <ul class="f">
+    <li class="safe">Sin API keys</li>
+    <li class="safe">Sin servidores</li>
+    <li class="safe">Código abierto, licencia MIT</li>
+  </ul>
+</section>
+
+<footer>Hecho con Claude Code · <a href="https://www.instagram.com/osdevstudio/">@osdevstudio</a></footer>
+</main>
+<script>
+document.querySelectorAll("button[data-t]").forEach(function(b){b.onclick=function(){
+var t=document.getElementById(b.dataset.t).textContent,o=b.textContent;
+function ok(){b.textContent="¡Copiado!";setTimeout(function(){b.textContent=o},1500)}
+if(navigator.clipboard){navigator.clipboard.writeText(t).then(ok)}else{var a=document.createElement("textarea");a.value=t;document.body.appendChild(a);a.select();document.execCommand("copy");a.remove();ok()}}});
+</script>
+</body>
+</html>
