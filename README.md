@@ -15,17 +15,17 @@ En la terminal:
 
 ```
 # Un solo comando (Claude Code reciente):
-claude plugin install orquesta --marketplace TU_USUARIO/orquesta --scope user
+claude plugin install orquesta --marketplace obedsamudio/orquesta --scope user
 
 # O en dos pasos:
-claude plugin marketplace add TU_USUARIO/orquesta
+claude plugin marketplace add obedsamudio/orquesta
 claude plugin install orquesta@orquesta --scope user
 ```
 
 O dentro del chat de Claude Code:
 
 ```
-/plugin marketplace add TU_USUARIO/orquesta
+/plugin marketplace add obedsamudio/orquesta
 /plugin install orquesta@orquesta
 /reload-plugins
 ```
@@ -41,7 +41,7 @@ Abre el panel con:
 Pega esto en Claude Code:
 
 ```
-Instala el plugin de este repositorio: https://github.com/TU_USUARIO/orquesta y ábrelo
+Instala el plugin de este repositorio: https://github.com/obedsamudio/orquesta y ábrelo
 ```
 
 ### Opción C: hazlo tú desde cero
